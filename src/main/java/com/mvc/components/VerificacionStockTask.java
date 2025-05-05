@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Clase encargada de ejecutar tareas programadas relacionadas con el carrito:
- * - Limpieza de carritos inactivos
- * - Verificación de demanda frente a stock
- */
+
 @Component
 public class VerificacionStockTask {
 

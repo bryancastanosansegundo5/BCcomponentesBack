@@ -33,6 +33,7 @@ List<CarritoVO> findByProductoId(@Param("productoId") Long productoId);
     @Query("SELECT SUM(c.cantidad) FROM CarritoVO c WHERE c.producto.id = :productoId")
     int contarPorProductoId(@Param("productoId") Long productoId);
 
+    // DISTINCT: evita IDs duplicados
     @Query("SELECT DISTINCT c.producto.id FROM CarritoVO c")
     List<Long> findDistinctProductoIds();
 

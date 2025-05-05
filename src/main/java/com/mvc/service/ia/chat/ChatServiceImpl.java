@@ -35,7 +35,7 @@ public class ChatServiceImpl implements IChatService {
     @Value("classpath:templates/ChatPrompt.st")
     private Resource chatPromptTemplate;
 
-    @Value("${openai.api.key}")
+    @Value("${spring.ai.openai.api-key}")
     private String openaiApiKey;
     
     @Override

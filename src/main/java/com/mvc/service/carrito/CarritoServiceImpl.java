@@ -108,12 +108,10 @@ public class CarritoServiceImpl implements CarritoService {
     @Override
     @Transactional
     public void eliminarCarritosInactivos(int horas) {
-        // Calculamos el límite de tiempo a partir del cual consideramos el carrito como
-        // inactivo
+        // Calculamos el límite de tiempo a partir del cual consideramos el carrito como inactivo
         LocalDateTime limite = LocalDateTime.now().minusHours(horas);
 
-        // Borramos todos los productos en carritos cuya fecha de creación sea anterior
-        // al límite
+        // Borramos todos los productos en carritos cuya fecha de creación sea anterior al límite
         carritoRepository.eliminarCarritosAntiguos(limite);
     }
 

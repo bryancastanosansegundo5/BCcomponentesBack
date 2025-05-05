@@ -10,6 +10,7 @@ public class CompatibilidadConfig {
 
     @Bean
     public ChatClient chatClient(OpenAiChatModel model) {
+        // Crea y devuelve una instancia de ChatClient configurada con el modelo especificado
         return ChatClient.builder(model).build();
     }
 }

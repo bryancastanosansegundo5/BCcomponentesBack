@@ -5,8 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling // importante para el hilo que comprueba los stocks y tareas de spring en
-					// general
+@EnableScheduling // importante para el hilo que comprueba los stocks y tareas de spring en general
 public class TiendaBryanCastanoSansegundoApplication {
 
 	public static void main(String[] args) {

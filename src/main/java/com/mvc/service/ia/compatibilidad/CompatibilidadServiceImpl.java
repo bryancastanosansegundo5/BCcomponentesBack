@@ -36,7 +36,7 @@ public class CompatibilidadServiceImpl implements ICompatibilidadService {
     @Value("classpath:templates/CompatibilidadPrompt.st")
     private Resource compatibilidadPromptTemplate;
 
-    @Value("${openai.api.key}")
+    @Value("${spring.ai.openai.api-key}")
     private String openaiApiKey;
 
     @Override
