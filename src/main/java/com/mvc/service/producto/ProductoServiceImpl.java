@@ -168,6 +168,12 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     @Transactional
+    public void borrarTodos() {
+        productoRepository.deleteAll();
+    }
+
+    @Override
+    @Transactional
     public ProductoVO getById(Long id) {
         return productoRepository.findById(id).orElse(null);
     }

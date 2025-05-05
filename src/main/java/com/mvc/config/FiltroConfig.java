@@ -11,10 +11,14 @@ public class FiltroConfig {
 
     @Bean
     public FilterRegistrationBean<Filter> jwtFilter() {
+        // instanciamos el filtro
         FilterRegistrationBean<Filter> registro = new FilterRegistrationBean<>();
+        // Asigna el filtro personalizado JwtFilter para interceptar y procesar las peticiones HTTP
         registro.setFilter(new JwtFilter());
-        registro.addUrlPatterns("/api/*"); // aplica solo a /api/...
-        registro.setOrder(1); // prioridad del filtro
+        // aplica a todo lo que empiece por /api/...
+        registro.addUrlPatterns("/api/*"); 
+        // prioridad del filtro
+        registro.setOrder(1); 
         return registro;
     }
 }

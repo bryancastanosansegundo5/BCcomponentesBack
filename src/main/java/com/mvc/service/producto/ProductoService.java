@@ -18,6 +18,8 @@ public interface ProductoService {
 
     void borrarPorId(Long id);
 
+    void borrarTodos();
+
     ProductoVO getById(Long id);
 
     List<ProductoVO> getAll();
@@ -51,6 +53,7 @@ public interface ProductoService {
     Page<ProductoDTO> buscarCatalogoPublico(String nombre, Long categoriaId, Pageable pageable);
 
     void importarDesdeExcel(MultipartFile archivo);
+
     byte[] generarPlantillaExcel();
 
 }

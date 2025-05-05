@@ -127,4 +127,11 @@ public class ProductoController {
     public List<ProductoDTO> obtenerMasVendidosPorCategoria(@PathVariable Long id) {
         return productoService.obtenerTop10PorCategoria(id);
     }
+
+    @DeleteMapping("/borrar-todo")
+    public ResponseEntity<String> borrarTodo() {
+        productoService.borrarTodos();
+        return ResponseEntity.ok("Todos los productos han sido eliminados.");
+    }
+
 }
