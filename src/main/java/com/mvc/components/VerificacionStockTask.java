@@ -37,6 +37,7 @@ public class VerificacionStockTask {
         List<Long> productoIds = carritoService.obtenerProductoIdsEnCarritos();
 
         for (Long productoId : productoIds) {
+            // Metodo para comprobar y notificar
             productoService.verificarStockEnCarritos(productoId);
         }
     }

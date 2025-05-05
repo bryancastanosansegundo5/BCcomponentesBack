@@ -210,11 +210,12 @@ public class ProductoServiceImpl implements ProductoService {
         int enCarritos = carritoService.contarTotalPorProducto(productoId);
         ProductoVO producto = productoRepository.findById(productoId).orElse(null);
 
+        // Si hay stock y en los carritos hay mas que stock
         if (producto != null && producto.getStock() > 0 && enCarritos > producto.getStock()) {
             System.out.println("🚨 Demanda excedida para el producto: " + producto.getNombre());
             System.out.println("➡️ En carritos: " + enCarritos + " | Stock actual: " + producto.getStock());
 
-            // Si se supera el stock, notifica automáticamente
+            // notifica al usuario
             notificarUsuarios(productoId);
         }
     }
@@ -222,12 +223,14 @@ public class ProductoServiceImpl implements ProductoService {
     @Transactional
     @Override
     public void notificarUsuarios(Long productoId) {
+        // busca en los carritos el producto
         List<CarritoVO> carritos = carritoRepository.findByProductoId(productoId);
 
         for (CarritoVO carrito : carritos) {
             UsuarioVO usuario = carrito.getUsuario();
             ProductoVO producto = carrito.getProducto();
 
+            // establezco el mensaje a enviar
             String mensajePlano = "¡Hola " + usuario.getNombre() + "! El producto '" +
                     producto.getNombre() + "' está a punto de agotarse.";
 
