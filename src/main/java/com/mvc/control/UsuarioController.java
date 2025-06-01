@@ -35,7 +35,8 @@ public class UsuarioController {
 
     @Autowired
     private CarritoService carritoService;
-
+ @Autowired
+    private JwtUtil jwtUtil;
     @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<UsuarioVO>> getUsuarioAll() {
         List<UsuarioVO> usuarios = usuarioService.getAll();
@@ -147,7 +148,8 @@ public class UsuarioController {
             usuarioService.actualizar(usuario);
 
             // Generar token
-            String token = JwtUtil.generarToken(usuario.getId(), usuario.getRol().getId());
+            // String token = JwtUtil.generarToken(usuario.getId(), usuario.getRol().getId());
+            String token = jwtUtil.generarToken(usuario.getId(), usuario.getRol().getId());
 
             // Devolver el usuario y el token
             LoginResponseDTO respuesta = new LoginResponseDTO(

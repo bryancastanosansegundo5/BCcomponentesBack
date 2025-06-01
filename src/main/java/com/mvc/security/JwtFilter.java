@@ -1,6 +1,5 @@
 package com.mvc.security;
 
-
 import com.mvc.security.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -10,8 +9,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JwtFilter implements Filter { 
+public class JwtFilter implements Filter {
     // Clase que implementa un filtro de servlet para proteger rutas con JWT
+    private final JwtUtil jwtUtil;
+
+    public JwtFilter(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -26,8 +30,8 @@ public class JwtFilter implements Filter {
         // Se obtiene la ruta de la petición
 
         if (!path.startsWith("/api/admin") &&
-            !path.startsWith("/api/logs") &&
-            !path.startsWith("/api/empleado")) {
+                !path.startsWith("/api/logs") &&
+                !path.startsWith("/api/empleado")) {
             // Si la ruta no requiere autenticación especial, se continúa sin validar token
             chain.doFilter(request, response);
             return;
@@ -46,7 +50,7 @@ public class JwtFilter implements Filter {
         // Se extrae el token quitando el prefijo "Bearer "
 
         try {
-            Jws<Claims> claims = JwtUtil.validarToken(token);
+            Jws<Claims> claims = jwtUtil.validarToken(token);
             // Se valida el token y se obtienen los datos codificados
 
             Long usuarioId = Long.valueOf(claims.getBody().getSubject());
@@ -77,5 +81,3 @@ public class JwtFilter implements Filter {
         }
     }
 }
-
- 
