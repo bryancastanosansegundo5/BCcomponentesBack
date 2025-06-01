@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="[%d{HH:mm:ss}] %-5p [%c] - %m%n" />
+    </Console>
+
+
+    <!-- Log en formato JSON, rotación por tamaño -->
+    <File name="LoginJsonFile" fileName="logs/login.json">
+      <PatternLayout pattern='{"timestamp":"%d{ISO8601}", "nivel":"%p", "mensaje":"%enc{%m}"}%n' />
+
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1MB" />
+      </Policies>
+    </File>
+  </Appenders>
+
+  <Loggers>
+    
+    
+    <Logger name="loginLogger" level="info" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="LoginJsonFile" />
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>
